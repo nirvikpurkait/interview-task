@@ -7,8 +7,14 @@
       opacity: 0;
       scale: 1;
     }
-    50% {
-      scale: 1.02;
+    20% {
+      scale: 1.2;
+    }
+    40% {
+      scale: 1;
+    }
+    60% {
+      scale: 1.1;
     }
     100% {
       opacity: 1;
