@@ -1,38 +1,32 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import Popup from "./popup";
 
-const countDownFrom = 3;
+const countUpTo = 3;
 
-const CountdownTimer = () => {
-  const [secRemaining, setSecRemaining] = useState(countDownFrom * 60);
+function CountdownTimer() {
+  const [secSpent, setSecSpent] = useState(0);
 
   useEffect(() => {
-    if (secRemaining <= 0) return;
+    if (secSpent >= countUpTo * 60) return;
 
     const interval = setInterval(() => {
-      setSecRemaining((prev) => prev - 1);
+      setSecSpent((prev) => prev + 1);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [secRemaining]);
+  }, [secSpent]);
 
-  const min = Math.floor(secRemaining / 60);
-  const sec = secRemaining % 60;
+  const min = Math.floor(secSpent / 60);
+  const sec = secSpent % 60;
 
   return (
     <div className="grow text-2xl flex justify-center items-center">
-      <p className={`${secRemaining === 0 && "hidden"}`}>
+      <p className={``}>
         {min}:{sec}
       </p>
-      <div className={`${secRemaining != 0 && "hidden"} `}></div>
-      {secRemaining === 0 && (
-        <div className="flex gap-4 flex-col">
-          <p>Exam is completed</p>
-          <Link to={"/"}>Go to home screen</Link>
-        </div>
-      )}
+      <div className={`hidden`}>{secSpent === countUpTo * 60 && <Popup />}</div>
     </div>
   );
-};
+}
 
 export default CountdownTimer;

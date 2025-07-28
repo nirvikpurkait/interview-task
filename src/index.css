@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  --animate-appear: appear 500ms ease-in-out;
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      scale: 1;
+    }
+    50% {
+      scale: 1.02;
+    }
+    100% {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+}
